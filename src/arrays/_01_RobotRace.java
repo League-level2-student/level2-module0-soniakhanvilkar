@@ -1,22 +1,84 @@
 package arrays;
+import java.util.Random;
+import org.jointheleague.graphical.robot.Robot;
 
 public class _01_RobotRace {
-	//1. make a main method
 
-	//2. create an array of 5 robots.
-
-	//3. use a for loop to initialize the robots.
-
-		//4. make each robot start at the bottom of the screen, side by side, facing up
-
-	//5. use another for loop to iterate through the array and make each robot move 
-	//   a random amount less than 50.
-
-	//6. use a while loop to repeat step 5 until a robot has reached the top of the screen.
-
-	//7. declare that robot the winner and throw it a party!
-
-	//8. try different races with different amounts of robots.
-
-	//9. make the robots race around a circular track.
+	Robot robot0 = new Robot();
+	Robot robot1 = new Robot();
+	Random random = new Random();
+	public 	double originX = 450;
+	public 	double originY = 300;
+	
+	public double angle = 0;
+	
+	public int r = 150;
+	
+	public int x = (int) Math.round(originX + r * Math.sin(angle));
+	
+	public int y = (int) Math.round(originY + r * Math.cos(angle));
+	
+	public int rob0 = 1;
+	public int rob1 = 1;
+	public int rand0 = 0;
+	public int rand1 = 0;
+	
+	public void robot0(int random0) {
+		for(int i=0; i<random0; i++) {
+			
+			angle = angle + Math.toRadians(5);
+			
+			x = (int) Math.round(originX + r * Math.sin(angle));
+			
+			y = (int) Math.round(originY + r * Math.cos(angle));
+		
+			robot0.moveTo(x, y);
+			rob0++;
+			
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	public void robot1(int random1) {
+		for(int i=0; i<random1; i++) {
+			
+			angle = angle + Math.toRadians(5);
+			
+			x = (int) Math.round(originX + r * Math.sin(angle));
+			
+			y = (int) Math.round(originY + r * Math.cos(angle));
+			
+			robot1.moveTo(x, y);
+			rob1++;
+			
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	public void combo() {
+		while(rob0<36 && rob1<36) {
+			rand0 = random.nextInt(3);
+			rand1 = random.nextInt(3);
+			robot0(rand0);
+			robot1(rand1);
+			
+		}
+		if(rob0>rob1) {
+			System.out.println("rob 0 is the winner");
+		}else {
+			System.out.println("rob 1 is the winner");
+		}
+	}
+	public void run() {
+		combo();
+	}
+				
 }
